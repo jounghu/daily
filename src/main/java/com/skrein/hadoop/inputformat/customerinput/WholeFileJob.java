@@ -30,7 +30,7 @@ public class WholeFileJob {
         job.setOutputValueClass(BytesWritable.class);
 
         FileInputFormat.setInputPaths(job, new Path("d://input"));
-        FileOutputFormat.setOutputPath(job, new Path("d://output6"));
+        FileOutputFormat.setOutputPath(job, new Path("d://output7"));
 
         // 设置NLineTextFormat
         job.setInputFormatClass(WholeFileInputFormat.class);

@@ -18,18 +18,7 @@ import java.io.IOException;
 public class AppWordCount {
 
 
-//    static {
-//        try {
-//            System.load("F:\\DevTool\\hadoop-2.7.2\\bin\\hadoop.dll");
-//        } catch (UnsatisfiedLinkError e) {
-//            System.err.println("Native code library failed to load.\n" + e);
-//            System.exit(1);
-//        }
-//    }
-
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-
-
         // 1. 获取Job对象
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf);
@@ -50,9 +39,11 @@ public class AppWordCount {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
+        job.setNumReduceTasks(2);
+
         // 6. 设置输入输出的目录
-        FileInputFormat.setInputPaths(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        FileInputFormat.setInputPaths(job, new Path("d:/input"));
+        FileOutputFormat.setOutputPath(job, new Path("d:/output871"));
 
         // 7. 提交Job
         job.waitForCompletion(true);

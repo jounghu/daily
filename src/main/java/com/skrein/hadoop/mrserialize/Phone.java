@@ -3,6 +3,7 @@ package com.skrein.hadoop.mrserialize;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.WritableComparable;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -15,7 +16,7 @@ import java.io.IOException;
  */
 @Data
 @NoArgsConstructor
-public class Phone implements Writable {
+public class Phone implements Writable , WritableComparable<Phone> {
 
     private long upFlow;
     private long downFlow;
@@ -44,4 +45,8 @@ public class Phone implements Writable {
     }
 
 
+    @Override
+    public int compareTo(Phone o) {
+        return 0;
+    }
 }

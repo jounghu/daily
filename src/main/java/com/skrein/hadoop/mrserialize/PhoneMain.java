@@ -1,6 +1,7 @@
 package com.skrein.hadoop.mrserialize;
 
 
+import com.skrein.hadoop.partition.PhonePartition;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -29,9 +30,10 @@ public class PhoneMain {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Phone.class);
 
-        FileInputFormat.setInputPaths(job,new Path("d:/phone-input"));
-        FileOutputFormat.setOutputPath(job,new Path("d:/phone-output4"));
-
+        FileInputFormat.setInputPaths(job, new Path("D:\\mr\\phoneinput"));
+        FileOutputFormat.setOutputPath(job, new Path("d:/mr/phone-output438"));
+        job.setNumReduceTasks(6);
+        job.setPartitionerClass(PhonePartition.class);
         job.waitForCompletion(true);
 
     }
