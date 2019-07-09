@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 @Data
 @NoArgsConstructor
-public class Phone implements Writable , WritableComparable<Phone> {
+public class Phone implements Writable, WritableComparable<Phone> {
 
     private long upFlow;
     private long downFlow;
@@ -45,8 +45,18 @@ public class Phone implements Writable , WritableComparable<Phone> {
     }
 
 
+    /**
+     *
+     * @param o
+     * @return -1 倒序 ， 1正序， 0默认
+     */
     @Override
     public int compareTo(Phone o) {
+        if (this.totalFlow > o.getTotalFlow()) {
+            return -1;
+        } else if (this.totalFlow < o.getTotalFlow()) {
+            return 1;
+        }
         return 0;
     }
 }
