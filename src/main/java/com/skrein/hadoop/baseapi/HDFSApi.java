@@ -41,6 +41,16 @@ public class HDFSApi {
         fileSystem.close();
     }
 
+    @Test
+    public void writePath()throws Exception{
+        Configuration conf = new Configuration(true);
+        FileSystem fileSystem = FileSystem.get(conf);
+        Path path = new Path("d://2019//22/22","12313");
+        FSDataOutputStream fsDataOutputStream = fileSystem.create(path);
+        fsDataOutputStream.write("hjs".getBytes());
+        fsDataOutputStream.close();
+    }
+
 
     /**
      * 文件下载

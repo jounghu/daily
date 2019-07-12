@@ -2,7 +2,6 @@ package com.skrein.hadoop.group;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -23,17 +22,20 @@ public class GroupMain {
         job.setReducerClass(GroupReducer.class);
 
         // 4. 设置map输出key和value的类型
-        job.setMapOutputKeyClass(IntWritable.class);
-        job.setMapOutputValueClass(Order.class);
+        job.setMapOutputKeyClass(Order.class);
+        job.setMapOutputValueClass(NullWritable.class);
 
 
         // 5. 设置最终key和value的类型
         job.setOutputKeyClass(Order.class);
         job.setOutputValueClass(NullWritable.class);
 
+        job.setGroupingComparatorClass(GroupCompare.class);
+        job.setPartitionerClass(OrderIdPartition.class);
+        job.setNumReduceTasks(3);
         // 6. 设置输入输出的目录
-        FileInputFormat.setInputPaths(job, new Path("G:\\mr\\groupinput"));
-        FileOutputFormat.setOutputPath(job, new Path("G:\\mr\\groupouput7"));
+        FileInputFormat.setInputPaths(job, new Path("D:\\mr\\phoneinput"));
+        FileOutputFormat.setOutputPath(job, new Path("d:\\mr\\groupouput1010"));
 
         // 7. 提交Job
         job.waitForCompletion(true);

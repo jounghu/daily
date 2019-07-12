@@ -18,8 +18,11 @@ public class Order implements WritableComparable<Order> {
 
     @Override
     public int compareTo(Order o) {
-        // 先按照id升序，然后按照
-        return 0;
+        if (this.orderId == o.getOrderId()) {
+            return -Double.compare(this.price, o.getPrice());
+        } else {
+            return Integer.compare(this.orderId, o.getOrderId());
+        }
     }
 
     @Override
@@ -32,5 +35,10 @@ public class Order implements WritableComparable<Order> {
     public void readFields(DataInput in) throws IOException {
         this.orderId = in.readInt();
         this.price = in.readDouble();
+    }
+
+    @Override
+    public String toString() {
+        return orderId + "\t" + price;
     }
 }
