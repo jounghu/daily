@@ -1,4 +1,4 @@
-package com.skrein.sample.invertindex;
+package com.skrein.hadoop.sample.invertindex;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;

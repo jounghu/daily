@@ -1,4 +1,4 @@
-package com.skrein.sample.invertindex;
+package com.skrein.hadoop.sample.invertindex;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
