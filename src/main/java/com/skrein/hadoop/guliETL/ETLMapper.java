@@ -58,7 +58,6 @@ public class ETLMapper extends Mapper<LongWritable, Text, Text, NullWritable> {
         for (int i = 0; i < iterLen; i++) {
             stringBuilder.append(lines[i]).append("\t");
         }
-        stringBuilder.append("\n");
 
         return stringBuilder.toString();
     }

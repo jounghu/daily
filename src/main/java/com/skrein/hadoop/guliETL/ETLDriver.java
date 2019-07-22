@@ -19,8 +19,8 @@ public class ETLDriver {
         job.setOutputValueClass(NullWritable.class);
         job.setOutputKeyClass(Text.class);
 
-        FileInputFormat.setInputPaths(job,new Path("G:\\mr\\guli"));
-        FileOutputFormat.setOutputPath(job,new Path("G:\\mr\\guliouput"));
+        FileInputFormat.setInputPaths(job,new Path(args[0]));
+        FileOutputFormat.setOutputPath(job,new Path(args[1]));
 
         job.waitForCompletion(true);
 

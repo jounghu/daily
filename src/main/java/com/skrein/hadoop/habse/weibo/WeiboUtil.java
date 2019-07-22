@@ -161,9 +161,11 @@ public class WeiboUtil {
         ResultScanner scanner = contentTable.getScanner(scan);
         Put posts = new Put(Bytes.toBytes(uid));
         for (Result result : scanner) {
-            byte[] row = result.getRow();
-            System.out.println("otherId: "+otherId+"-----------------------add-----------"+new String(row));
-            posts.addColumn(Bytes.toBytes("posts"), Bytes.toBytes(otherId), row);
+            Cell[] cells = result.rawCells();
+            if(cells!=null&&cells.length>0){
+                Cell cell = cells[0];
+                posts.addColumn(Bytes.toBytes("posts"), Bytes.toBytes(otherId), cell.getTimestamp(),CellUtil.cloneValue(cell));
+            }
         }
 
         Table inboxTable = connection.getTable(TableName.valueOf(TB_INBOX));
@@ -204,7 +206,7 @@ public class WeiboUtil {
 
     @Test
     public void init() throws IOException {
-//        createNamespace();
+        createNamespace();
         createTables(TB_CONTENT, 1, "content");
         createTables(TB_RELATION, 1, "fans");
         createTables(TB_INBOX, 3, "posts");
